@@ -6,9 +6,9 @@
       "type": "pwa-chrome",
       "request": "launch",
       "name": "Launch Chrome against localhost",
-      "runtimeExecutable": "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe",
+      "runtimeExecutable":"C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe",
       "url": "http://localhost:3000",
-      "webRoot": "${workspaceFolder}"
+      "webRoot":"${workspaceFolder}"
     }
   ]
 }

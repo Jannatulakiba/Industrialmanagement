@@ -4,424 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title> Lasker fashion</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Arial', sans-serif;
-            line-height: 1.6;
-            color: #333;
-            overflow-x: hidden;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        /* Header & Navigation */
-        header {
-            background: linear-gradient(135deg, #2c3e50, #3498db);
-            color: white;
-            padding: 1rem 0;
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
-            backdrop-filter: blur(10px);
-            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
-        }
-
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            font-size: 1.8rem;
-            font-weight: bold;
-            background: linear-gradient(45deg, #fff, #f39c12);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .nav-links {
-            display: flex;
-            list-style: none;
-            gap: 2rem;
-        }
-
-        .nav-links a {
-            color: white;
-            text-decoration: none;
-            font-weight: 500;
-            transition: all 0.3s ease;
-            position: relative;
-        }
-
-        .nav-links a:hover {
-            color: #f39c12;
-            transform: translateY(-2px);
-        }
-
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: #f39c12;
-            transition: width 0.3s ease;
-        }
-
-        .nav-links a:hover::after {
-            width: 100%;
-        }
-
-        /* Hero Section */
-        .hero {
-            background: linear-gradient(135deg, rgba(52, 152, 219, 0.9), rgba(44, 62, 80, 0.9)), 
-                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><defs><pattern id="fabric" patternUnits="userSpaceOnUse" width="40" height="40"><rect width="40" height="40" fill="%23f8f9fa"/><circle cx="20" cy="20" r="1" fill="%23dee2e6"/></pattern></defs><rect width="100%" height="100%" fill="url(%23fabric)"/></svg>');
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            text-align: center;
-            color: white;
-            position: relative;
-        }
-
-        .hero-content h1 {
-            font-size: 3.5rem;
-            margin-bottom: 1rem;
-            opacity: 0;
-            animation: fadeInUp 1s ease forwards;
-        }
-
-        .hero-content p {
-            font-size: 1.3rem;
-            margin-bottom: 2rem;
-            opacity: 0;
-            animation: fadeInUp 1s ease 0.3s forwards;
-        }
-
-        .cta-button {
-            display: inline-block;
-            background: linear-gradient(45deg, #f39c12, #e67e22);
-            color: white;
-            padding: 15px 30px;
-            text-decoration: none;
-            border-radius: 50px;
-            font-weight: bold;
-            font-size: 1.1rem;
-            transition: all 0.3s ease;
-            opacity: 0;
-            animation: fadeInUp 1s ease 0.6s forwards;
-            box-shadow: 0 10px 30px rgba(243, 156, 18, 0.3);
-        }
-
-        .cta-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 40px rgba(243, 156, 18, 0.4);
-        }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        /* Services Section */
-        .services {
-            padding: 5rem 0;
-            background: #f8f9fa;
-        }
-
-        .section-title {
-            text-align: center;
-            font-size: 2.5rem;
-            margin-bottom: 3rem;
-            color: #2c3e50;
-            position: relative;
-        }
-
-        .section-title::after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 100px;
-            height: 4px;
-            background: linear-gradient(45deg, #3498db, #f39c12);
-            border-radius: 2px;
-        }
-
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 1.5rem;
-        }
-
-        .service-card {
-            background: white;
-            padding: 2rem;
-            border-radius: 15px;
-            text-align: center;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .service-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-            transition: left 0.5s ease;
-        }
-
-        .service-card:hover::before {
-            left: 100%;
-        }
-
-        .service-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
-        }
-
-        .service-icon {
-            font-size: 3rem;
-            color: #3498db;
-            margin-bottom: 1rem;
-        }
-
-        .service-card h3 {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-            color: #2c3e50;
-        }
-
-        /* Products Section */
-        .products {
-            padding: 5rem 0;
-            background: white;
-        }
-
-        .products-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 1.5rem;
-        }
-
-        .product-card {
-            background: #f8f9fa;
-            border-radius: 15px;
-            overflow: hidden;
-            transition: all 0.3s ease;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-        }
-
-        .product-card:hover {
-            transform: scale(1.05);
-            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
-        }
-
-        .product-image {
-            height: 200px;
-            background: linear-gradient(45deg, #3498db, #2c3e50);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 3rem;
-        }
-
-        .product-info {
-            padding: 1.5rem;
-        }
-
-        .product-info h3 {
-            color: #2c3e50;
-            margin-bottom: 0.5rem;
-        }
-
-        /* About Section */
-        .about {
-            padding: 5rem 0;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-        }
-
-        .about-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 3rem;
-            align-items: center;
-        }
-
-        .about-text h2 {
-            font-size: 2.5rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .about-text p {
-            font-size: 1.1rem;
-            margin-bottom: 1rem;
-            line-height: 1.8;
-        }
-
-        .stats {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 1rem;
-            margin-top: 2rem;
-        }
-
-        .stat {
-            text-align: center;
-            padding: 1rem;
-            background: rgba(255,255,255,0.1);
-            border-radius: 10px;
-            backdrop-filter: blur(10px);
-        }
-
-        .stat-number {
-            font-size: 2rem;
-            font-weight: bold;
-            color: #f39c12;
-        }
-
-        /* Contact Section */
-        .contact {
-            padding: 5rem 0;
-            background: #2c3e50;
-            color: white;
-        }
-
-        .contact-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 3rem;
-        }
-
-        .contact-form {
-            background: rgba(255,255,255,0.1);
-            padding: 2rem;
-            border-radius: 15px;
-            backdrop-filter: blur(10px);
-        }
-
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 0.5rem;
-            font-weight: bold;
-        }
-
-        .form-group input,
-        .form-group textarea {
-            width: 100%;
-            padding: 12px;
-            border: none;
-            border-radius: 8px;
-            background: rgba(255,255,255,0.9);
-            font-size: 1rem;
-        }
-
-        .submit-btn {
-            background: linear-gradient(45deg, #f39c12, #e67e22);
-            color: white;
-            padding: 12px 30px;
-            border: none;
-            border-radius: 25px;
-            font-size: 1rem;
-            font-weight: bold;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .submit-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 20px rgba(243, 156, 18, 0.3);
-        }
-
-        .contact-info h3 {
-            font-size: 1.8rem;
-            margin-bottom: 1.5rem;
-            color: #f39c12;
-        }
-
-        .contact-info p {
-            margin-bottom: 1rem;
-            font-size: 1.1rem;
-        }
-
-        /* Footer */
-        footer {
-            background: #1a252f;
-            color: white;
-            text-align: center;
-            padding: 2rem 0;
-        }
-
-        /* Mobile Responsiveness */
-        @media (max-width: 768px) {
-            .nav-links {
-                display: none;
-            }
-
-            .hero-content h1 {
-                font-size: 2.5rem;
-            }
-
-            .about-content,
-            .contact-content {
-                grid-template-columns: 1fr;
-            }
-
-            .stats {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        /* Smooth Scroll */
-        html {
-            scroll-behavior: smooth;
-        }
-
-        /* Loading Animation */
-        .fade-in {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.6s ease;
-        }
-
-        .fade-in.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-    </style>
-</head>
+    <link rel="stylesheet" href="contact-info.css">
+   </head>
 <body>
     <!-- Header -->
     <header>
@@ -441,7 +25,7 @@
     <section id="home" class="hero">
         <div class="container">
             <div class="hero-content">
-                <h1>Premium Garment Manufacturing</h1>
+                <h1>Lasker Fashion - Premium Garment Manufacturing</h1>
                 <p>Your trusted partner in high-quality clothing production with cutting-edge technology and sustainable practices</p>
                 <a href="#contact" class="cta-button">Get Quote Now</a>
             </div>
@@ -486,7 +70,7 @@
                 <div class="service-card fade-in">
                     <div class="service-icon">🧶</div>
                     <h3>Knit Fabric Specialization</h3>
-                    <p>Expert in knit fabric manufacturing including jersey, rib, interlock, fleece, and technical knits for various applications.</p>
+                    <p>Expert in knit fabric manufacturing including jersey, rib, interlock, fleece,trycot and technical knits for various applications.</p>
                 </div>
                 <div class="service-card fade-in">
                     <div class="service-icon">🪡</div>
@@ -518,7 +102,7 @@
                     <div class="product-image">🧶</div>
                     <div class="product-info">
                         <h3>Knit Garments</h3>
-                        <p>T-shirts, polo shirts, hoodies, sweaters, and knitwear using various knit constructions.</p>
+                        <p>T-shirts, polo shirts, hoodies and knitwear using various knit constructions.</p>
                     </div>
                 </div>
                 <div class="product-card fade-in">
@@ -592,12 +176,12 @@
                         <div>Years Experience</div>
                     </div>
                     <div class="stat">
-                        <div class="stat-number">50+</div>
+                        <div class="stat-number">80%</div>
                         <div>Happy Clients</div>
                     </div>
                     <div class="stat">
                         <div class="stat-number">1000+</div>
-                        <div>Garments Produced</div>
+                        <div>Garments Product Produced</div>
                     </div>
                     <div class="stat">
                         <div class="stat-number">5+</div>
@@ -608,7 +192,7 @@
         </div>
     </section>
 
-    <!-- Contact Section -->
+    <!-- Contact Section
     <section id="contact" class="contact">
         <div class="container">
             <h2 class="section-title">Contact Us</h2>
@@ -632,25 +216,25 @@
                             <textarea id="message" name="message" rows="5" required></textarea>
                         </div>
                         <button type="submit" class="submit-btn">Send Message</button>
-                    </form>
-                </div>
+                    </form> -->
+                <!-- </div> -->
                 <div class="contact-info fade-in">
                     <h3>Get In Touch</h3>
                     <p><strong>📍 Address:</strong><br>
-                   Road # 5/3, Block # D<br>
+                 House number-92  Road # 5/3, Block # D<br>
                     Shouth Banasree, Dhaka <br>
                     Bangladesh</p>
                     
                     <p><strong>📞 Phone:</strong><br>
-                    +880 1925555435</p>
+                    +8801925555435 , +8801730222381 </p>
                     
                     <p><strong>✉️ Email:</strong><br>
                     thimtiaz@gmail.com<br>
-                    sales@Laskerfashion.com</p>
+                    </p>
                     
                     <p><strong>🕒 Business Hours:</strong><br>
-                    Monday - Friday: 8:00 AM - 6:00 PM<br>
-                    Saturday: 9:00 AM - 2:00 PM</p>
+                    Saturday - Thursday: 8:00 AM - 7:00 PM<br>
+                    Friday: Holiday</p>
                 </div>
             </div>
         </div>
